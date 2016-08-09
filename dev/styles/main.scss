@@ -1,10 +1,13 @@
 @import 'setup';
 
-body {
-	background-color: blue;
+
+.wrapper {
+	margin-left: 10%;
+	margin-right: 10%;
 }
 
-.container {
-	max-width: 800px;
-	margin: 0 auto;
+.location {
+	display: flex;
+	justify-content: center;
+	align-content: center;
 }
