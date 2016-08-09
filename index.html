@@ -11,9 +11,24 @@
 	</header>
 	<section class="location">
 
-	<form>
-		<p>Please enter your location</p>
-		<input type="text" name="location">
+	<form action="" id="searchForm">
+		<fieldset>
+			<p>What’s your location?</p>
+			<label for="country">Country:</label>
+			<input type="text" name="country" id="country">
+			<label for="city">City:</label>
+			<input type="text" name="city" id="city">
+		</fieldset>
+		<fieldset>
+			<p>Feelin’ healthy?</p>
+			<select name="healthy" id="healthy" required>
+				<option value="yes">Yes</option>
+				<option value="no">No</option>
+			</select>
+		</fieldset>
+		<button type="submit" id="searchLocation">
+			Submit
+		</button>
 	</form>
 		
 	</section>
@@ -29,7 +44,7 @@
 		
 	</footer>
 
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
 	<script src="public/scripts/main.js"></script>	
 </body>
 </html>
