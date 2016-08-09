@@ -11,7 +11,7 @@ gulp.task('default', ['browser-sync','styles', 'scripts', 'watch']);
 
 gulp.task('watch', function(){
 	gulp.watch('./dev/styles/**/*.scss', ['styles']);
-	gulp.watch('./dev/scripts/*.js', ['scripts']);
+	gulp.watch('./dev/scripts/**/*.js', ['scripts']);
   	gulp.watch('./public/*.html', reload);
 });
 
