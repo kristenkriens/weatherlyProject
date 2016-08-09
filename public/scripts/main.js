@@ -16,49 +16,47 @@
 
 var weatherlyApp = {};
 
-weatherlyApp.apiKey = '3b02180019cd1414';
-weatherlyApp.apiUrl = 'http://api.wunderground.com/api/';
+weatherlyApp.wundergroundApiKey = '7489dbf2bba52dd6';
+weatherlyApp.wundergroundApiUrl = 'http://api.wunderground.com/api/';
 
-weatherlyApp.getWeather = function(country, city) {
+
+//Get weather data
+weatherlyApp.getWeather = function(city, country) {
 	$.ajax({
-		url: weatherlyApp.apiUrl + weatherlyApp.apiKey + "/geolookup/conditions/q/" + country + "/" + city + ".json",
+		url: weatherlyApp.wundergroundApiUrl + weatherlyApp.wundergroundApiKey + "/geolookup/conditions/q/" + country + "/" + city + ".json",
 		method: 'GET',
 		dataType: 'jsonp'
-	}).then(function(weatherStats){
-		weatherlyApp.getBeverages(weatherStats);
+	}).then(function(weatherStats) {
+		weatherlyApp.displayWeather(weatherStats);
 	});
 };
 
-// weatherlyApp.getWeather = function() {
-// 	$.ajax({
-// 	  	url : "http://api.wunderground.com/api/3b02180019cd1414/geolookup/conditions/q/canada/Toronto.json",
-// 	  	dataType : "jsonp",
-// 	  	data: {
+// Display weather data
+weatherlyApp.displayWeather = function(weatherStats) {
+	$(".weatherDisplay").empty();
 
-// 	  	}
-// 	 }).then(function(parsed_json) {
-//   		var location = parsed_json.location.city;
-//   		var temp_c = parsed_json.current_observation.temp_c;
-//   		var conditions = parsed_json.current_observation.icon;
-//   		console.log(parsed_json);
-// 	  	$('#weather').html('Current temperature in <span>' + location + '</span> is <span>'  + temp_c + 'C</span>), and the conditions are <span>' + conditions) + '</span>';
-// 	  	// weatherlyApp.getBeverages(temp_c)
-// 	  });
-// };
-
-// console.log(weatherlyApp.getWeather());
+	var location = $('<h2>').text(weatherStats.location.city);
+	var temperature = $('<h3>').text(weatherStats.current_observation.temp_c);
+	var conditions = $('<h3>').text(weatherStats.current_observation.icon);
+	
+	$('.weatherDisplay').append(location, temperature, conditions);
+};
 
 
-weatherlyApp.init = function(){
 
-	$('#searchLocation').on('submit', function(e) {
+
+weatherlyApp.init = function() {
+	$('form').on('submit', function(e) {
 		e.preventDefault();
-		var country = $('input[name=country]').val();
+
 		var city = $('input[name=city]').val();
-		console.log(country, city)
-		weatherlyApp.getWeather(country, city)
-		$('input[name=country]').val('');
+		var country = $('input[name=country]').val();
+
 		$('input[name=city]').val('');
+		$('input[name=country]').val('');
+
+		console.log(city, country)
+		weatherlyApp.getWeather(city, country)
 	});
 };
 
