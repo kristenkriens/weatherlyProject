@@ -1,4 +1,4 @@
-s// Have user put in current location
+// Have user put in current location
 // Compare user location to locations on Wunderground
 // Retrieve and store weather data and temperature
 // Add temperature and weather data + icons to the page
@@ -34,7 +34,7 @@ weatherlyApp.getWeather = function(city, country) {
 		var weather = weatherStats.current_observation.weather;
 		// console.log(weather)
 		weatherlyApp.getBeverages(temp, weather);
-
+		$('.weatherDisplay').html('Your weather is ' + temp + weather )
 	});
 };
 weatherlyApp.getBeverages = function(temp, weather){
@@ -52,15 +52,15 @@ weatherlyApp.getBeverages = function(temp, weather){
 
 
 // Display weather data
-weatherlyApp.displayWeather = function(weatherStats) {
-	$(".weatherDisplay").empty();
+// weatherlyApp.displayWeather = function(weatherStats) {
+// 	$(".weatherDisplay").empty();
 
-	var location = $('<h2>').text(weatherStats.location.city);
-	var temperature = $('<h3>').text(weatherStats.current_observation.temp_c);
-	var conditions = $('<h3>').text(weatherStats.current_observation.icon);
+// 	var location = $('<h2>').text(weatherStats.location.city);
+// 	var temperature = $('<h3>').text(weatherStats.current_observation.temp_c);
+// 	var conditions = $('<h3>').text(weatherStats.current_observation.icon);
 	
-	$('.weatherDisplay').append(location, temperature, conditions);
-};
+// 	$('.weatherDisplay').append(location, temperature, conditions);
+// };
 
 
 
