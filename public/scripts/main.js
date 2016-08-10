@@ -19,6 +19,10 @@ var weatherlyApp = {};
 weatherlyApp.wundergroundApiKey = '7489dbf2bba52dd6';
 weatherlyApp.wundergroundApiUrl = 'http://api.wunderground.com/api/';
 
+weatherlyApp.yummlyApiKey = '20df0e101bb5ef2c9bf247ae44f5b670';
+weatherlyApp.yummlyApiID = 'abcc327c';
+weatherlyApp.yummlyApiUrl = 'http://api.yummly.com/v1/api/recipes';
+
 
 //Get weather data
 weatherlyApp.getWeather = function(city, country) {
@@ -27,43 +31,58 @@ weatherlyApp.getWeather = function(city, country) {
 		method: 'GET',
 		dataType: 'jsonp'
 
-	}).then(function(weatherStats){
+	}).then(function(weatherStats) {
 		console.log(weatherStats);
 		var temp = weatherStats.current_observation.temp_c;
 		// console.log(temp);
 		var weather = weatherStats.current_observation.weather;
 		// console.log(weather)
-		weatherlyApp.getBeverages(temp, weather);
-		$('.weatherDisplay').html('Your weather is ' + temp + weather )
+		$('.weatherDisplay').html('Your weather is ' + temp + weather);
+
+		weatherlyApp.getTemp(temp, weather);
 	});
 };
-weatherlyApp.getBeverages = function(temp, weather){
-	
-	console.log(temp, weather)//what is the temp - here
+
+weatherlyApp.getTemp = function(temp, weather) {
+	console.log(temp, weather);//what is the temp - here
 
 	if(temp > 25){
-		console.log('look for cold')
+		weatherlyApp.tempName = "cold";
 	} else if (temp < 10){
-		console.log('look for hot')
+		weatherlyApp.tempName = "hot";
 	} else {
-		console.log('look for any')
+		weatherlyApp.tempName = "";
 	}
-}
 
+	weatherlyApp.getHealthy();
+};
 
-// Display weather data
-// weatherlyApp.displayWeather = function(weatherStats) {
-// 	$(".weatherDisplay").empty();
+weatherlyApp.getHealthy = function() {
 
-// 	var location = $('<h2>').text(weatherStats.location.city);
-// 	var temperature = $('<h3>').text(weatherStats.current_observation.temp_c);
-// 	var conditions = $('<h3>').text(weatherStats.current_observation.icon);
-	
-// 	$('.weatherDisplay').append(location, temperature, conditions);
-// };
+	if(weatherlyApp.healthy === 'yes'){
+	weatherlyApp.healthyName = "healthy";
+	}
 
+	weatherlyApp.getDrinks(weatherlyApp.healthyName, weatherlyApp.tempName);
+};
 
-
+weatherlyApp.getDrinks = function(query1, query2) {
+	$.ajax({
+		url: weatherlyApp.yummlyApiUrl,
+		method: 'GET',
+		dataType: 'jsonp',
+		data: {
+			_app_key: weatherlyApp.yummlyApiKey,
+			_app_id: weatherlyApp.yummlyApiID,
+			requirePictures: true,
+			allowedCourse: 'course^course-Beverages',
+			maxResult: 3,
+			q: query1 + " " + query2
+		}
+	}).then(function(drinksResults) {
+		console.log(drinksResults);
+	});
+};
 
 
 weatherlyApp.init = function() {
@@ -74,20 +93,9 @@ weatherlyApp.init = function() {
 		var city = $('input[name=city]').val();
 		var country = $('input[name=country]').val();
 
-		$('input[name=city]').val('');
-		$('input[name=country]').val('');
+		weatherlyApp.healthy = $('input[name=healthy]:checked').val(); //this finds out whether they want to be healthy or not
 
-		console.log(country, city)
 		weatherlyApp.getWeather(city,country)
-		
-		var healthy = $('input[name=healthy]:checked').val(); //this finds out whether they want to be healthy or not
-		console.log(healthy)
-
-		if(healthy === 'yes'){
-			//look for calories lower than....
-		} else{
-			//look for calories higher than...
-		}
 
 	});
 };
