@@ -60,7 +60,9 @@ weatherlyApp.getTemp = function(temp, weather) {
 weatherlyApp.getHealthy = function() {
 
 	if(weatherlyApp.healthy === 'yes'){
-	weatherlyApp.healthyName = "healthy";
+		weatherlyApp.healthyName = "healthy";
+	} else {
+		weatherlyApp.healthyName = "";
 	}
 
 	weatherlyApp.getDrinks(weatherlyApp.healthyName, weatherlyApp.tempName);
