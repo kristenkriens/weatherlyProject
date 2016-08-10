@@ -7,11 +7,11 @@ var autoprefixer = require('gulp-autoprefixer');
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
 
-gulp.task('default', ['browser-sync','styles', 'scripts', 'watch']);
+gulp.task('default', ['browser-sync','styles', 'watch']);
 
 gulp.task('watch', function(){
 	gulp.watch('./dev/styles/**/*.scss', ['styles']);
-	gulp.watch('./dev/scripts/**/*.js', ['scripts']);
+
   	gulp.watch('./public/*.html', reload);
 });
 
@@ -29,9 +29,4 @@ gulp.task('browser-sync', function () {
   browserSync.init({
     server: '.'
   });
-});
-
-gulp.task('scripts', function () {
-  gulp.src('./dev/scripts/main.js')
-  .pipe(gulp.dest('./public/scripts')).pipe(reload({ stream: true }));
 });

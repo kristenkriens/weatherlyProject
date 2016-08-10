@@ -1,4 +1,4 @@
-// Have user put in current location
+s// Have user put in current location
 // Compare user location to locations on Wunderground
 // Retrieve and store weather data and temperature
 // Add temperature and weather data + icons to the page
@@ -26,10 +26,30 @@ weatherlyApp.getWeather = function(city, country) {
 		url: weatherlyApp.wundergroundApiUrl + weatherlyApp.wundergroundApiKey + "/geolookup/conditions/q/" + country + "/" + city + ".json",
 		method: 'GET',
 		dataType: 'jsonp'
-	}).then(function(weatherStats) {
-		weatherlyApp.displayWeather(weatherStats);
+
+	}).then(function(weatherStats){
+		console.log(weatherStats);
+		var temp = weatherStats.current_observation.temp_c;
+		// console.log(temp);
+		var weather = weatherStats.current_observation.weather;
+		// console.log(weather)
+		weatherlyApp.getBeverages(temp, weather);
+
 	});
 };
+weatherlyApp.getBeverages = function(temp, weather){
+	
+	console.log(temp, weather)//what is the temp - here
+
+	if(temp > 25){
+		console.log('look for cold')
+	} else if (temp < 10){
+		console.log('look for hot')
+	} else {
+		console.log('look for any')
+	}
+}
+
 
 // Display weather data
 weatherlyApp.displayWeather = function(weatherStats) {
@@ -45,8 +65,10 @@ weatherlyApp.displayWeather = function(weatherStats) {
 
 
 
+
 weatherlyApp.init = function() {
 	$('form').on('submit', function(e) {
+
 		e.preventDefault();
 
 		var city = $('input[name=city]').val();
@@ -55,8 +77,18 @@ weatherlyApp.init = function() {
 		$('input[name=city]').val('');
 		$('input[name=country]').val('');
 
-		console.log(city, country)
-		weatherlyApp.getWeather(city, country)
+		console.log(country, city)
+		weatherlyApp.getWeather(city,country)
+		
+		var healthy = $('input[name=healthy]:checked').val(); //this finds out whether they want to be healthy or not
+		console.log(healthy)
+
+		if(healthy === 'yes'){
+			//look for calories lower than....
+		} else{
+			//look for calories higher than...
+		}
+
 	});
 };
 
