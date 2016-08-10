@@ -25,20 +25,47 @@ weatherlyApp.getWeather = function(country, city) {
 		method: 'GET',
 		dataType: 'jsonp'
 	}).then(function(weatherStats){
-		weatherlyApp.getBeverages(weatherStats);
+		console.log(weatherStats);
+		var temp = weatherStats.current_observation.temp_c;
+		// console.log(temp);
+		var weather = weatherStats.current_observation.weather;
+		// console.log(weather)
+		weatherlyApp.getBeverages(temp, weather);
 	});
 };
+weatherlyApp.getBeverages = function(temp, weather){
+	
+	console.log(temp, weather)//what is the temp - here
+
+	if(temp > 25){
+		console.log('look for cold')
+	} else if (temp < 10){
+		console.log('look for hot')
+	} else {
+		console.log('look for any')
+	}
+}
+
 
 weatherlyApp.init = function(){
 
-	$('#searchLocation').on('submit', function(e) {
+	$('#searchForm').on('submit', function(e) {
+	
 		e.preventDefault();
 		var country = $('input[name=country]').val();
 		var city = $('input[name=city]').val();
 		console.log(country, city)
 		weatherlyApp.getWeather(country, city)
-		$('input[name=country]').val('');
-		$('input[name=city]').val('');
+		
+		var healthy = $('select#healthy option:selected').val(); //this finds out whether they want to be healthy or not
+		console.log(healthy)
+
+		if(healthy === 'yes'){
+			//look for calories lower than....
+		} else{
+			//look for calories higher than...
+		}
+
 	});
 };
 

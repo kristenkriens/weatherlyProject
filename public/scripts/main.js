@@ -16,7 +16,7 @@
 
 var weatherlyApp = {};
 
-weatherlyApp.apiKey = '3b02180019cd1414';
+weatherlyApp.apiKey = '7489dbf2bba52dd6';
 weatherlyApp.apiUrl = 'http://api.wunderground.com/api/';
 
 weatherlyApp.getWeather = function(country, city) {
@@ -25,40 +25,47 @@ weatherlyApp.getWeather = function(country, city) {
 		method: 'GET',
 		dataType: 'jsonp'
 	}).then(function(weatherStats){
-		weatherlyApp.getBeverages(weatherStats);
+		console.log(weatherStats);
+		var temp = weatherStats.current_observation.temp_c;
+		// console.log(temp);
+		var weather = weatherStats.current_observation.weather;
+		// console.log(weather)
+		weatherlyApp.getBeverages(temp, weather);
 	});
 };
+weatherlyApp.getBeverages = function(temp, weather){
+	
+	console.log(temp, weather)//what is the temp - here
 
-// weatherlyApp.getWeather = function() {
-// 	$.ajax({
-// 	  	url : "http://api.wunderground.com/api/3b02180019cd1414/geolookup/conditions/q/canada/Toronto.json",
-// 	  	dataType : "jsonp",
-// 	  	data: {
-
-// 	  	}
-// 	 }).then(function(parsed_json) {
-//   		var location = parsed_json.location.city;
-//   		var temp_c = parsed_json.current_observation.temp_c;
-//   		var conditions = parsed_json.current_observation.icon;
-//   		console.log(parsed_json);
-// 	  	$('#weather').html('Current temperature in <span>' + location + '</span> is <span>'  + temp_c + 'C</span>), and the conditions are <span>' + conditions) + '</span>';
-// 	  	// weatherlyApp.getBeverages(temp_c)
-// 	  });
-// };
-
-// console.log(weatherlyApp.getWeather());
+	if(temp > 25){
+		console.log('look for cold')
+	} else if (temp < 10){
+		console.log('look for hot')
+	} else {
+		console.log('look for any')
+	}
+}
 
 
 weatherlyApp.init = function(){
 
-	$('#searchLocation').on('submit', function(e) {
+	$('#searchForm').on('submit', function(e) {
+	
 		e.preventDefault();
 		var country = $('input[name=country]').val();
 		var city = $('input[name=city]').val();
 		console.log(country, city)
 		weatherlyApp.getWeather(country, city)
-		$('input[name=country]').val('');
-		$('input[name=city]').val('');
+		
+		var healthy = $('select#healthy option:selected').val(); //this finds out whether they want to be healthy or not
+		console.log(healthy)
+
+		if(healthy === 'yes'){
+			//look for calories lower than....
+		} else{
+			//look for calories higher than...
+		}
+
 	});
 };
 
