@@ -52,15 +52,15 @@ weatherlyApp.getBeverages = function(temp, weather){
 
 
 // Display weather data
-weatherlyApp.displayWeather = function(weatherStats) {
-	$(".weatherDisplay").empty();
+// weatherlyApp.displayWeather = function(weatherStats) {
+// 	$(".weatherDisplay").empty();
 
-	var location = $('<h2>').text(weatherStats.location.city);
-	var temperature = $('<h3>').text(weatherStats.current_observation.temp_c);
-	var conditions = $('<h3>').text(weatherStats.current_observation.icon);
+// 	var location = $('<h2>').text(weatherStats.location.city);
+// 	var temperature = $('<h3>').text(weatherStats.current_observation.temp_c);
+// 	var conditions = $('<h3>').text(weatherStats.current_observation.icon);
 	
-	$('.weatherDisplay').append(location, temperature, conditions);
-};
+// 	$('.weatherDisplay').append(location, temperature, conditions);
+// };
 
 
 
