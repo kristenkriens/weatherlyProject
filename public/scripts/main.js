@@ -21,7 +21,7 @@ weatherlyApp.wundergroundApiUrl = 'http://api.wunderground.com/api/';
 
 weatherlyApp.yummlyApiKey = '20df0e101bb5ef2c9bf247ae44f5b670';
 weatherlyApp.yummlyApiID = 'abcc327c';
-weatherlyApp.yummlyApiUrl = 'http://api.yummly.com/v1/api/recipes';
+weatherlyApp.yummlyApiUrl = 'http://api.yummly.com/v1/api';
 
 
 //Get weather data
@@ -46,9 +46,9 @@ weatherlyApp.getWeather = function(city, country) {
 weatherlyApp.getTemp = function(temp, weather) {
 	console.log(temp, weather);//what is the temp - here
 
-	if(temp > 25){
+	if(temp > 25) {
 		weatherlyApp.tempName = "cold";
-	} else if (temp < 10){
+	} else if (temp < 10) {
 		weatherlyApp.tempName = "hot";
 	} else {
 		weatherlyApp.tempName = "";
@@ -58,8 +58,7 @@ weatherlyApp.getTemp = function(temp, weather) {
 };
 
 weatherlyApp.getHealthy = function() {
-
-	if(weatherlyApp.healthy === 'yes'){
+	if(weatherlyApp.healthy === 'yes') {
 		weatherlyApp.healthyName = "healthy";
 	} else {
 		weatherlyApp.healthyName = "";
@@ -70,7 +69,7 @@ weatherlyApp.getHealthy = function() {
 
 weatherlyApp.getDrinks = function(query1, query2) {
 	$.ajax({
-		url: weatherlyApp.yummlyApiUrl,
+		url: weatherlyApp.yummlyApiUrl + "/recipes",
 		method: 'GET',
 		dataType: 'jsonp',
 		data: {
@@ -83,8 +82,34 @@ weatherlyApp.getDrinks = function(query1, query2) {
 		}
 	}).then(function(drinksResults) {
 		console.log(drinksResults);
+		weatherlyApp.getDrinkID(drinksResults);
 	});
 };
+
+
+
+
+weatherlyApp.getDrinkID = function(drinksResults) {
+	for (i = 0; i < 3; i++) {
+		weatherlyApp.getDrinkRecipe(drinksResults.matches[i].id);
+	}
+};
+
+weatherlyApp.getDrinkRecipe = function(drinkID) {
+	$.ajax({
+		url: weatherlyApp.yummlyApiUrl + "/recipe/" + drinkID,
+		method: "GET",
+		dataType: "jsonp",
+		data: {
+			_app_key: weatherlyApp.yummlyApiKey,
+			_app_id: weatherlyApp.yummlyApiID,
+		}
+	}).then(function(finalDrinks) {
+		console.log(finalDrinks)
+	});
+};
+
+
 
 
 weatherlyApp.init = function() {
