@@ -2,34 +2,35 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>My Project</title>
+	<title>Weatherly Drinks</title>
 	<link rel="stylesheet" href="public/styles/style.css">
 </head>
 <body>
 	<header>
-	
+		<h1>Weatherly Drinks</h1>
 	</header>
-	<section class="location">
 
-	<form action="" id="searchForm">
-		<fieldset>
-			<p>What’s your location?</p>
-			<label for="country">Country:</label>
-			<input type="text" name="country" id="country">
-			<label for="city">City:</label>
-			<input type="text" name="city" id="city">
-		</fieldset>
-		<fieldset>
-			<p>Feelin’ healthy?</p>
-			<select name="healthy" id="healthy" required>
-				<option value="yes" id="yes">Yes</option>
-				<option value="no" id="no">No</option>
-			</select>
-		</fieldset>
-		<button type="submit" id="searchLocation">
-			Submit
-		</button>
-	</form>
+	<section class="form">
+		<form action="">
+			<fieldset class="location">
+				<p>What’s your location?</p>
+				<label for="city">City:</label>
+				<input type="text" name="city">
+				<label for="country">Country:</label>
+				<input type="text" name="country">
+			</fieldset>
+			<fieldset class="healthy">
+				<p>Feelin’ healthy?</p>
+				<label for="healthy">Yes</label>
+				<input type="radio" id="yes" name="healthy" value="yes">
+				<label for="healthy">No</label>
+				<input type="radio" name="healthy" id="no" value="no">
+			</fieldset>
+			<button type="submit" name="submit">
+				Submit
+			</button>
+		</form>
+
 		
 	</section>
 	<section class="weatherDisplay">
@@ -37,7 +38,7 @@
 			
 		</div>
 	</section>
-	<section class="drinks">
+	<section class="drinksDisplay">
 
 	</section>
 	<footer>
