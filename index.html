@@ -4,6 +4,23 @@
 	<meta charset="UTF-8">
 	<title>Weatherly Drinks</title>
 	<link rel="stylesheet" href="public/styles/style.css">
+	<script id="myTemplate" type="x-handlebars-template">
+		<div class="single-drink">
+			<div class="drink-image">
+				<img src="{{images.0.hostedMediumUrl}}" alt="{{name}}">
+			</div>
+			<div class="drink-text">
+				<h2 class="title">{{name}}</h2>
+				<h3 class="prep-time">{{cookTime}}</h3>
+				<ul class="ingredients">
+					{{#each ingredientLines}}
+						<li>{{this}}</li>
+					{{/each}}
+				</ul>
+				<div class="directions"><a href="{{source.sourceRecipeUrl}}" target="_blank">Recipe from {{source.sourceDisplayName}}</a></div>
+			</div>
+		</div>
+	</script>
 </head>
 <body>
 	<header>
@@ -46,6 +63,7 @@
 	</footer>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.js"></script>
 	<script src="public/scripts/main.js"></script>	
 </body>
 </html>

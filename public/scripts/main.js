@@ -77,7 +77,6 @@ weatherlyApp.getDrinks = function(query1, query2) {
 			_app_id: weatherlyApp.yummlyApiID,
 			requirePictures: true,
 			allowedCourse: 'course^course-Beverages',
-			maxResult: 3,
 			q: query1 + " " + query2
 		}
 	}).then(function(drinksResults) {
@@ -86,13 +85,12 @@ weatherlyApp.getDrinks = function(query1, query2) {
 	});
 };
 
-
-
-
 weatherlyApp.getDrinkID = function(drinksResults) {
-	for (i = 0; i < 3; i++) {
-		weatherlyApp.getDrinkRecipe(drinksResults.matches[i].id);
-	}
+    for (i = 0; i < 3; i++) {
+        var randomNumber = Math.floor(Math.random() * drinksResults.matches.length);
+        console.log(drinksResults.matches[randomNumber]);
+        weatherlyApp.getDrinkRecipe(drinksResults.matches[randomNumber].id);
+    }
 };
 
 weatherlyApp.getDrinkRecipe = function(drinkID) {
@@ -105,10 +103,20 @@ weatherlyApp.getDrinkRecipe = function(drinkID) {
 			_app_id: weatherlyApp.yummlyApiID,
 		}
 	}).then(function(finalDrinks) {
-		console.log(finalDrinks)
+		console.log(finalDrinks);
+		weatherlyApp.displayDrinks(finalDrinks);
 	});
 };
 
+
+// Display drinks
+weatherlyApp.displayDrinks = function(finalDrinks) {
+		var myTemplate = $("#myTemplate").html();
+		var template = Handlebars.compile(myTemplate);
+
+		var drinkTemplate = template(finalDrinks);
+		$(".drinksDisplay").append(drinkTemplate);
+};
 
 
 
