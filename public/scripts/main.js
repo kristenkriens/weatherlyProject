@@ -86,11 +86,12 @@ weatherlyApp.getDrinks = function(query1, query2) {
 };
 
 weatherlyApp.getDrinkID = function(drinksResults) {
-    for (i = 0; i < 3; i++) {
-        var randomNumber = Math.floor(Math.random() * drinksResults.matches.length);
-        console.log(drinksResults.matches[randomNumber]);
-        weatherlyApp.getDrinkRecipe(drinksResults.matches[randomNumber].id);
-    }
+	for (i = 0; i < 3; i++) {
+		var randomNumber = Math.floor(Math.random() * drinksResults.matches.length);
+		console.log(drinksResults.matches[randomNumber]);
+		weatherlyApp.getDrinkRecipe(drinksResults.matches[randomNumber].id);
+		drinksResults.matches.splice(randomNumber,1);
+	}
 };
 
 weatherlyApp.getDrinkRecipe = function(drinkID) {
