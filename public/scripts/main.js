@@ -138,7 +138,6 @@ weatherlyApp.displayDrinks = function(finalDrinks) {
 
 weatherlyApp.init = function() {
 	$('form').on('submit', function(e) {
-
 		e.preventDefault();
 
 		var city = $('input[name=city]').val();
@@ -146,7 +145,9 @@ weatherlyApp.init = function() {
 
 		weatherlyApp.healthy = $('input[name=healthy]:checked').val(); //this finds out whether they want to be healthy or not
 
-		weatherlyApp.getWeather(city,country)
+		weatherlyApp.getWeather(city,country);
+
+		$('.drinksDisplay').empty();
 
 	});
 };
