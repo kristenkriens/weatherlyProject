@@ -12,7 +12,8 @@
 			</div>
 			<div class="drink-text">
 				<h2 class="title">{{name}}</h2>
-				<h3 class="prep-time">{{cookTime}}</h3>
+				<h3 class="prep-time">Prep Time: {{totalTime}}</h3>
+				<h3>Ingredients</h3>
 				<ul class="ingredients">
 					{{#each ingredientLines}}
 						<li>{{this}}</li>
@@ -32,6 +33,7 @@
 		</div>
 	</header>
 
+
 	<main>
 		
 		<section class="form">
@@ -44,11 +46,11 @@
 						<div class="answer__box">
 							<div class="answer">
 								<label for="city">City:</label>
-								<input type="text" name="city">
+								<input type="text" name="city" required>
 							</div>
 							<div class="answer">
 								<label for="country">Country:</label>
-								<input type="text" name="country">
+								<input type="text" name="country" required>
 							</div>
 						</div>
 						
@@ -61,7 +63,7 @@
 						<div class="answer__box">
 							<div class="answer">
 								<label for="healthy" class="healthy__label">Yes</label>
-								<input type="radio" id="yes" name="healthy" value="yes">
+								<input type="radio" id="yes" name="healthy" value="yes" required>
 							</div>
 							<div class="answer">
 								<label for="healthy" class="healthy__label">No</label>
@@ -77,19 +79,34 @@
 				</button>
 
 			</form>
-
-			
 		</section>
+	
 		<section class="weatherDisplay">
+			<div class="weatherDisplayText">
+			</div>
 			<div class="weatherIcons">
-				
+			<div class="cloud icon">
+				<img src="dev/styles/images/noun_193656_cc.png">
+			</div>
+			<div class="storm icon">
+				<img src="dev/styles/images/noun_193657_cc.png">
+			</div>
+			<div class="sunny icon">
+				<img src="dev/styles/images/noun_193660_cc.png">    
+			</div>
+			<div class="snow icon">
+				<img src="dev/styles/images/noun_193661_cc.png">    
+			</div>
+			<div class="rain icon">
+				<img src="dev/styles/images/noun_193662_cc.png">    
 			</div>
 		</section>
+
 		<section class="drinksDisplay">
 
 		</section>
-	</main>
 
+	</main>
 	<footer>
 		
 	</footer>

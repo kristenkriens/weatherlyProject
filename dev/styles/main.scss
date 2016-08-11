@@ -93,6 +93,7 @@ button:hover{
 	align-content: center;
 }
 
+
 .question{
 	min-height: 400px;
 	text-align:center;
@@ -150,4 +151,17 @@ button:hover{
 		justify-content:center;
 
 	}
+
+
+.icon img {
+	height: 200px;
 }
+
+.storm, .cloud, .snow, .sunny, .rain {
+	display: none;
+}
+
+.sunny.display {
+	display: block;
+}
+

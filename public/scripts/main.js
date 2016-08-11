@@ -37,9 +37,10 @@ weatherlyApp.getWeather = function(city, country) {
 		// console.log(temp);
 		var weather = weatherStats.current_observation.weather;
 		// console.log(weather)
-		$('.weatherDisplay').html('Your weather is ' + temp + weather);
+		$('.weatherDisplayText').html('Your weather is ' + temp + "°C and " + weather);
 
 		weatherlyApp.getTemp(temp, weather);
+		weatherlyApp.displayIcons(weather);
 	});
 };
 
@@ -55,6 +56,20 @@ weatherlyApp.getTemp = function(temp, weather) {
 	}
 
 	weatherlyApp.getHealthy();
+};
+
+weatherlyApp.displayIcons = function (data){
+	if(data.includes("Clear")){
+		console.log("IT WORKS")
+		$('.sunny').css('display', 'block');
+	} else if(data.includes("Thunder")){
+		$('.storm').css('display', 'block');
+	} else if(data.includes("Drizzle") || data.includes("Rain")){
+		$('.rain').css('display', 'block');
+	} else if(data.includes("Snow") || data.includes("Ice") || data.includes("Hail") || data.includes("Squalls")){
+		$('.snow').css('display', 'block');
+	} else if (data.includes("Mist") || data.includes("Fog") || data.includes("Smoke") || data.includes("Haze") || data.includes("Spray") || data.includes("Overcast") || data.includes("Cloudy") || data.includes("Clouds"))
+	$('.cloud').css('display', 'block');    
 };
 
 weatherlyApp.getHealthy = function() {
@@ -88,7 +103,7 @@ weatherlyApp.getDrinks = function(query1, query2) {
 weatherlyApp.getDrinkID = function(drinksResults) {
 	for (i = 0; i < 3; i++) {
 		var randomNumber = Math.floor(Math.random() * drinksResults.matches.length);
-		console.log(drinksResults.matches[randomNumber]);
+		// console.log(drinksResults.matches[randomNumber]);
 		weatherlyApp.getDrinkRecipe(drinksResults.matches[randomNumber].id);
 		drinksResults.matches.splice(randomNumber,1);
 	}
