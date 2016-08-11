@@ -11,3 +11,15 @@
 	justify-content: center;
 	align-content: center;
 }
+
+.icon img {
+	height: 200px;
+}
+
+.storm, .cloud, .snow, .sunny, .rain {
+	display: none;
+}
+
+.sunny.display {
+	display: block;
+}
