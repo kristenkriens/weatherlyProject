@@ -169,6 +169,41 @@ button:active{
 
 }
 
+
+.single-drink {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 100%;	
+}
+
+.drink-image {
+	width: 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0% 50%;
+	margin: 20px;
+}
+
+.drink-text {
+	padding: 0;
+	width: 50%;
+	min-height: 350px;
+}
+
+.drink-container {
+	display: flex;
+	width: 80%;
+	justify-content: center;
+	margin: 0 auto;
+	background-color: #80CBAE;
+}
+
+.drink-container:nth-child(2){
+	flex-direction: row-reverse;
+	background-color: white;
+}
+
 .weatherDisplay{
 	// border:1px solid teal;
 	display:flex;
@@ -194,3 +229,4 @@ footer{
 	padding:10px;
 	text-align: center;
 }
+

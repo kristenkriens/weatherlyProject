@@ -7,10 +7,9 @@
 	<link rel="stylesheet" href="public/styles/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans" rel="stylesheet">
 	<script id="myTemplate" type="x-handlebars-template">
+		<div class="drink-container"
 		<div class="single-drink">
-			<div class="drink-image">
-				<img src="{{images.0.hostedLargeUrl}}" alt="{{name}}">
-			</div>
+			<div class="drink-image" style="background-image:url({{images.0.hostedLargeUrl}})"></div>
 			<div class="drink-text">
 				<h2 class="title">{{name}}</h2>
 				<h3 class="prep-time">Prep Time: {{totalTime}}</h3>
@@ -22,6 +21,7 @@
 				</ul>
 				<div class="directions"><a href="{{source.sourceRecipeUrl}}" target="_blank">Recipe from {{source.sourceDisplayName}}</a></div>
 			</div>
+		</div>
 		</div>
 	</script>
 </head>
@@ -43,11 +43,11 @@
 						<div class="answer__box">
 							<div class="answer">
 								<label for="city">City:</label>
-								<input type="text" name="city" required>
+								<input type="text" name="city" required value="toronto">
 							</div>
 							<div class="answer">
 								<label for="country">Country:</label>
-								<input type="text" name="country" required>
+								<input type="text" name="country" required value="canada">
 							</div>
 						</div>
 						
@@ -58,12 +58,12 @@
 						<p>Feelin’ healthy?</p>
 						<div class="answer__box">
 							<div class="answer">
-								<input type="radio" id="healthy" name="yes" value="yes" required>
-								<label for="healthy" class="healthy__label">Yes</label>
+								<input type="radio" id="yes" name="healthy" value="yes" required>
+								<label for="yes" class="healthy__label">Yes</label>
 							</div>
 							<div class="answer">
-								<input type="radio" id="healthy" name="no" value="no">
-								<label for="healthy" class="healthy__label">No</label>
+								<input type="radio" id="no" name="healthy" value="no">
+								<label for="no" class="healthy__label">No</label>
 							</div>
 						</div>
 					</div>
