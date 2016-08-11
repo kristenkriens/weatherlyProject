@@ -42,7 +42,6 @@ header{
 		width:740px;
 		fill: rgba(255,255,255,0.2)
 	}
-
 }
 fieldset{
 	margin:0;
@@ -59,7 +58,6 @@ fieldset{
 }
 form{
 	text-align:center;
-
 
 	button{
 		margin:100px;
@@ -152,8 +150,8 @@ button:hover{
 		justify-content:center;
 
 	}
-
 }
+
 .icon img {
 	height: 200px;
 }
@@ -164,5 +162,40 @@ button:hover{
 
 .sunny.display {
 	display: block;
+}
+
+
+.single-drink {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 100%;	
+}
+
+.drink-image {
+	width: 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0% 50%;
+	margin: 20px;
+}
+
+.drink-text {
+	padding: 0;
+	width: 50%;
+	min-height: 350px;
+}
+
+.drink-container {
+	display: flex;
+	width: 80%;
+	justify-content: center;
+	margin: 0 auto;
+	background-color: #80CBAE;
+}
+
+.drink-container:nth-child(2){
+	flex-direction: row-reverse;
+	background-color: white;
 }
 
