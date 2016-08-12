@@ -132,6 +132,9 @@ weatherlyApp.displayDrinks = function(finalDrinks) {
 
 		var drinkTemplate = template(finalDrinks);
 		$(".drinksDisplay").append(drinkTemplate);
+		$('html, body').animate({
+         scrollTop: $("#results").offset().top
+    	}, 750);
 };
 
 
@@ -148,10 +151,22 @@ weatherlyApp.init = function() {
 		weatherlyApp.getWeather(city,country);
 
 		$('.drinksDisplay').empty();
-
 	});
 };
 
 $(function() {
 	weatherlyApp.init();
 });
+
+$('a[href*="#"]:not([href="#"])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 750);
+        return false;
+      }
+    }
+  });

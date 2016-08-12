@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Weatherly Drinks</title>
 	<link rel="icon" type="image/png" href="public/assets/noun_193658_cc.png">
+	<link rel="stylesheet" href="dev/styles/animate.css">
 	<link rel="stylesheet" href="public/styles/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Open+Sans" rel="stylesheet">
 	<script id="myTemplate" type="x-handlebars-template">
@@ -30,11 +31,12 @@
 		<div class="headerText wrapper">
 			<h1>Weatherly Drinks</h1>
 			<h2>A beverage for any forecast</h2>
+			<a href="#main"><img src="dev/images/bolt.png" class="animated infinite flash"></a>
 		</div>
 	</header>
 
 
-	<main>
+	<main id="main">
 		<section class="form">
 			<form action="">
 				<fieldset class="location question__color1">
@@ -74,7 +76,7 @@
 			</form>
 		</section>
 
-		<section class="weatherDisplay">
+		<section id="results" class="weatherDisplay">
 			<div class="weatherDisplayText">
 
 			</div>
@@ -102,7 +104,7 @@
 	</main>
 
 	<footer>
-		<p>All icons by Per from the Noun Project. Designed and Coded by Kristen Kriens, Mark Hill, and Megan Mitchell</p>
+		<p>Icons by Per and daisy binks from <a href="https://thenounproject.com" target="_blank">The Noun Project</a>. Designed and Coded by <a href="http://kristenkriens.com" target="_blank">Kristen Kriens</a>, <a href="http://www.markhilldev.com" target="_blank">Mark Hill</a>, and <a href="http://meganmcodes.com" target="_blank">Megan Mitchell</a>. Using the <a href="https://www.wunderground.com/weather/api/" target="_blank">Wunderground</a> and <a href="https://developer.yummly.com/" target="_blank">Yummly</a> API's.</p>
 	</footer>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
