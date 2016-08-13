@@ -19,14 +19,11 @@ header {
 	display:flex;
 	align-items:center;
 	background:#fac2c2;
-	background-image:url(../../dev/images/main-bg.png);
+	background-image:url(../images/main-bg.png);
 	background-position:center center;
 	background-size:contain;
 	background-repeat:no-repeat;
 	position:relative;
-	@media (max-width:480px) {
-		background-image:none;
-	}
 	.headerText{
 		text-align:center;
 		color:#696a6a;
